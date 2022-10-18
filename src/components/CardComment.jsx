@@ -4,9 +4,9 @@ export default function CardComment() {
 	return (
 		<div className="container flex w-12/12  bg-bg-color3 dark:bg-bg-dark2 my-2 p-2">
 			<img
-				src="https://www.transparentpng.com/thumb/circle/2P2Onf-circle-picture.png"
+				src="https://w7.pngwing.com/pngs/419/473/png-transparent-computer-icons-user-profile-login-user-heroes-sphere-black-thumbnail.png"
 				alt=""
-				className="w-20 h-20 flex-none items-center"
+				className="w-20 h-20 flex-none mt-3 mr-3 border-solid border-2  border-bg-dark items-center rounded-full"
 			/>
 			<div className="flex-initial my-3">
 				<p className="font-pt-sans text-black dark:text-white text-xs lg:text-sm">

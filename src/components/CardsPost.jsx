@@ -1,13 +1,47 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { apiRequest } from 'utils/apiRequest';
 
 function CardsPost() {
+
+    const [messages, setMessages] = useState("");
+    const [disabled, setDisabled] = useState(true);
+
+    useEffect (() => {
+        if (messages) {
+            setDisabled(false);
+        } else {
+            setDisabled(true);
+        }
+    }, [messages]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const body = {
+            message : messages,
+        };
+        apiRequest("https://virtserver.swaggerhub.com/HERIBUDIYANA/Sosial-Media-API/1.0.0/myposts", "POST", body)
+        .then ((res) => {
+            const { message } = res.message;
+            if (res.message) {
+                localStorage.setItem('statusUser', JSON.stringify(res));
+              alert('Status Diperbaharui')
+              e.target.reset();
+            }
+          })
+          .catch ((err) => {
+            const { message } = err.response.message;
+            alert(message)
+          })
+          .finally ();
+    };
+
   return (
-    <div className="p-4 w-full max-w-sm bg-bg-color3 rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-bg-dark dark:border-gray-700">
-        <form>
+    <div className="p-4 w-full bg-bg-color3 rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-bg-dark dark:border-gray-700 mt-3 mb-3">
+        <form onSubmit={(e) => handleSubmit(e)}>
             <div className="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
                 <div className="py-2 px-4 bg-white rounded-t-lg dark:bg-gray-800">
                     <textarea className="font-pt-sans px-0 w-full text-sm text-text-color bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white
-                     dark:placeholder-gray-400" placeholder="Apa yang sedang terjadi?" required="" id="comment" rows="4">
+                     dark:placeholder-gray-400" placeholder="Apa yang sedang terjadi?" required="" id="comment" rows="4" name="messages" onChange={(e) => setMessages(e.target.value)}>
                      </textarea>
                      <div className="flex justify-between items-center py-2 px-3 border-t dark:border-gray-600">
                         <div className="flex pl-0 space-x-1 sm:pl-2">

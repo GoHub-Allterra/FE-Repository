@@ -28,16 +28,17 @@ function CardsRegister() {
       email,
       password,
     };
-    apiRequest("https://virtserver.swaggerhub.com/HERIBUDIYANA/Sosial-Media-API/1.0.0/register", "POST", body)
+    apiRequest("http://52.77.251.146/register", "POST", body)
       .then ((res) => {
-        const { message, data } = res.data;
-        if (res.data) {
+        console.log(res.message)
+        const { message, data } = res.message;
+        if (res.message) {
           alert('Daftar Berhasil')
-          localStorage.setItem('userDaftar', JSON.stringify(res.data));
+          localStorage.setItem('userDaftar', JSON.stringify(res.message));
         }
       })
       .catch ((err) => {
-        const { message } = err.response.data;
+        const { message } = err.response.message;
         alert(message)
       })
       .finally (()=>

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import "styles/index.css";
+import CardsRegister from "./CardsRegister";
 
 export default function CardsLogIn() {
   const navigate = useNavigate();
@@ -57,6 +58,7 @@ export default function CardsLogIn() {
             placeholder="password"
             className="w-3/4 rounded-md bg-bg-color3 dark:bg-black border-none dark:border-bg-dark mt-2 mb-4 px-1 mx-1"
           />
+          </form>
           <div className="card-actions">
             <button
               onClick={handleApi}
@@ -66,11 +68,12 @@ export default function CardsLogIn() {
             </button>
             <br />
             <hr className="border border-1 border-solid border-bg-color3 dark:border-bg-dark dark:bg-bg-dark bg-bg-color3" />
-            <button className="bg-bg-color2 dark:bg-bg-dark rounded-md w-3/4 my-5 text-sm text-white font-pt-sans ">
+            {/* <button className="bg-bg-color2 dark:bg-bg-dark rounded-md w-3/4 my-5 text-sm text-white font-pt-sans ">
               Daftar
-            </button>
+            </button> */}
+            <CardsRegister/>
           </div>
-        </form>
+        
       </div>
     </div>
   );

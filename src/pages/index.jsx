@@ -17,11 +17,11 @@ function App() {
 			<div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-5 gap-4">
 				<div className="sm:border-r-0 md:border-r-0 lg:border-r-2 border-bg-color3 dark:border-bg-dark">
 					
-					{/* <CardsLogIn/> */}
-					<CardsProfiles/>
+					<CardsLogIn/>
+					{/* <CardsProfiles/> */}
 				</div>
 				<div className="lg:col-start-2 col-span-3 items-center">
-					<CardsPost/>
+					{/* <CardsPost/> */}
 					<CardComment/>
 					<CardComment/>
 					<CardComment/>

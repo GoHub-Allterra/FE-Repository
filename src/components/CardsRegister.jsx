@@ -8,22 +8,22 @@ function CardsRegister() {
   const [showModal, setShowModal] = React.useState(true);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [fullname, setFullname] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(true);
 
   useEffect (() => {
-    if (email && username && fullname && password) {
+    if (email && username && name && password) {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
-  }, [email, username, fullname, password]);
+  }, [email, username, name, password]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const body = {
-      nama: fullname,
+      name,
       username,
       email,
       password,
@@ -72,8 +72,8 @@ function CardsRegister() {
                       </div>
                       <div className="label-fullname">
                         <input className="fullname bg-bg-color border border-gray-300 text-text-color text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full
-                          p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-bg-color font-pt-sans" placeholder="fullname" type="fullname" name="fullname" id="inputfullname"
-                          onChange={(e) => setFullname(e.target.value)}>
+                          p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-bg-color font-pt-sans" placeholder="fullname" type="name" name="name" id="inputname"
+                          onChange={(e) => setName(e.target.value)}>
                         </input>
                       </div>
                       <div className="label-password">

@@ -2,26 +2,24 @@ import React from "react";
 import { MdSend } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
 import { IconContext } from "react-icons";
+import { useDispatch, useSelector } from "react-redux";
 
-function ReadPost() {
+function CardsPostLogin(props) {
+  const Users = useSelector((state) => state.data.Users);
   return (
-    <div className="read-post-card text-pt-sans">
-      <div className="read-post-card-inside flex flex-col p-10 bg-bg-color3 dark:bg-bg-dark2 rounded-2xl">
+    <>
+    <div className="read-post-card">
+      <div className="read-post-card-inside flex flex-col p-3 bg-bg-color3 dark:bg-bg-dark2 rounded-2xl">
         <div className="read-post-card-prof flex flex-row mb-6">
-          <img
-            className="read-post-card-profpic object-cover h-20 w-20 rounded-full"
-            alt="profile picture"
-          ></img>
-          <div className="read-post-card-profname text-black dark:text-text-color2 object-right ml-5 text-2xl place-self-center">
-            Profile Name
-          </div>
+          <img src="https://cdn.iconscout.com/icon/free/png-64/pokemon-pokeball-pikachu-thunder-electric-shock-32217.png" className="read-post-card-profpic object-cover h-10 w-10 rounded-full" alt=""/>
+          <h1 className="read-post-card-profname text-black dark:text-text-color2 object-right ml-5 font-pt-sans place-self-center">
+            {props.fullname}
+          </h1>
         </div>
-        <div className="read-post-card-content text-black dark:text-text-color2 mb-6 text-3xl">
-          placeholder isi text placeholder isi textplaceholder isi
-          textplaceholder isi textplaceholder isi text
-        </div>
+        <p className="read-post-card-content text-black dark:text-text-color2 mb-6 text-normal font-pt-sans">
+        {props.status}
+        </p>
         <div className="read-post-card-comment-container flex flex-row justify-between">
-          {/* <img src="" className='read-post-card-likeIcon' /> */}
 
           <div className="w-auto read-post-card-sendIcon place-self-center">
             <div className="read-post-card-sendIcon mr-5" alt="icon">
@@ -43,7 +41,7 @@ function ReadPost() {
               dark:placeholder-gray-400"
               type="text"
               name="name"
-              placeholder="Post a comment ..."
+              placeholder="Tambahkan komentar..."
             />
           </form>
 
@@ -65,7 +63,9 @@ function ReadPost() {
         </div>
       </div>
     </div>
+    <br/>
+    </>
   );
 }
 
-export default ReadPost;
+export default CardsPostLogin;

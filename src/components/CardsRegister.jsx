@@ -28,7 +28,7 @@ function CardsRegister() {
       email,
       password,
     };
-    apiRequest("http://52.77.251.146/register", "POST", body)
+    apiRequest("http://52.77.235.98/register", "POST", body)
       .then ((res) => {
         console.log(res.message)
         const { message, data } = res.message;

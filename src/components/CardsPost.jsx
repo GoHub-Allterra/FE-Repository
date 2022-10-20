@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { apiRequest } from 'utils/apiRequest';
+import { setStatus } from 'utils/redux/reducers/reducer';
+import { useDispatch, useSelector } from "react-redux";
 
 function CardsPost() {
-
+    const Users = useSelector((state) => state.data.Users);
+    const dispatch = useDispatch ();
     const [messages, setMessages] = useState("");
     const [disabled, setDisabled] = useState(true);
 
@@ -15,6 +18,7 @@ function CardsPost() {
     }, [messages]);
 
     const handleSubmit = async (e) => {
+        const getStatus = localStorage.getItem("statusUser")
         e.preventDefault();
         const body = {
             message : messages,
@@ -24,12 +28,31 @@ function CardsPost() {
             const { message } = res.message;
             if (res.message) {
                 localStorage.setItem('statusUser', JSON.stringify(res));
+                if (getStatus) {
+                    const parsedStatus = JSON.parse(getStatus);
+                    parsedStatus.push({
+                        fullName : Users.name,
+                        status : messages
+                    });
+
+                    const temp = JSON.stringify(parsedStatus);
+                    dispatch(setStatus(parsedStatus));
+                    localStorage.setItem("statusUser", temp);
+                } else {
+                    const temp = [{
+                        fullName : Users.name,
+                        status : messages
+                    }]
+                    dispatch(setStatus(temp));
+                    localStorage.setItem("statusUser", JSON.stringify(temp));
+                }
+
               alert('Status Diperbaharui')
               e.target.reset();
             }
           })
           .catch ((err) => {
-            const { message } = err.response.message;
+            const { message } = err.message;
             alert(message)
           })
           .finally ();

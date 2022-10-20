@@ -11,6 +11,12 @@ const sliceState = createSlice({
     handleAuth: (state, action) => {
       state.isLoggedin = action.payload;
     },
+    handleUser: (state, action) => {
+      state.Users = action.payload;
+    },
+    setStatus: (state, action) => {
+      state.dataStatus = action.payload;
+    },
   },
 });
 
@@ -18,5 +24,5 @@ const reducer = {
   state: sliceState.reducer,
 };
 
-export const { handleAuth } = sliceState.actions;
+export const { handleAuth,handleUser,setStatus } = sliceState.actions;
 export default reducer;

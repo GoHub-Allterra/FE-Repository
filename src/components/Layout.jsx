@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Navbar />
-      <div className="w-full h-screen dark:bg-bg-dark2 bg-bg-color">
+      <div className="w-full h-full dark:bg-bg-dark2 bg-bg-color">
         {children}
       </div>
     </div>

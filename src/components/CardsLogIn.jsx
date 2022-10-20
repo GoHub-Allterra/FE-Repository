@@ -88,13 +88,6 @@ export default function CardsLogIn() {
           />
         </form>
         <div className="card-actions justify-center items-center">
-          {/* <button
-            onClick={handleApi}
-            loading={loading || disabled}
-            className="bg-bg-color2 dark:bg-bg-dark rounded-md w-3/4 my-2 px-1 py-1 text-sm text-white font-pt-sans text-center hover:bg-bg-dark"
-          >
-            Masuk
-          </button> */}
           <button
             onClick={handleApi}
             className="bg-bg-color2 dark:bg-bg-dark rounded-md w-3/4 my-2 px-1 py-1 text-sm text-white font-pt-sans text-center hover:bg-bg-dark"

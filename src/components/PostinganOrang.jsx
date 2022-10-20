@@ -83,7 +83,6 @@ function PostinganOrang(props) {
                 {data.content}
               </p>
               <div className="read-post-card-comment-container flex flex-row justify-between">
-                {/* <img src="" className='read-post-card-likeIcon' /> */}
                 {isLoggedin && (
                   <>
                     <div className="w-auto read-post-card-sendIcon place-self-center">

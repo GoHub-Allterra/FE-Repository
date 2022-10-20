@@ -30,15 +30,15 @@ export default function CardsLogIn() {
     e.preventDefault();
     axios
       .post(
-        `https://virtserver.swaggerhub.com/HERIBUDIYANA/Sosial-Media-API/1.0.0/login`,
+        `http://52.77.235.98/login`,
         {
           username: username,
           password: password,
         }
       )
       .then((result) => {
-        console.log(result.data);
-        localStorage.setItem("token", result.data.token);
+        console.log(result);
+        localStorage.setItem("Token", result.data.Token);
         localStorage.setItem("userLogin", JSON.stringify(result));
         dispatch(handleAuth(true));
         Swal.fire({

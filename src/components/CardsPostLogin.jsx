@@ -4,6 +4,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { IconContext } from "react-icons";
 
 function ReadPost() {
+
   return (
     <div className="read-post-card text-pt-sans">
       <div className="read-post-card-inside flex flex-col p-10 bg-bg-color3 dark:bg-bg-dark2 rounded-2xl">

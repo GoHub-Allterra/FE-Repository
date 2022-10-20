@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "styles/index.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { WithRouter } from "utils/Navigations";
+import { useNavigate } from "react-router-dom";
+import { setStatus } from "utils/redux/reducers/reducer";
 
 import Ads from "components/Ads";
 import Layout from "components/Layout";
-import CardComment from "components/CardComment";
 import CardsLogIn from "components/CardsLogIn";
 import CardsProfiles from "components/CardsProfiles";
 import CardsPost from "components/CardsPost";
-import ReadPost from "components/CardsPostLogin";
+import CardsPostLogin from "components/CardsPostLogin";
+import CardComment from "components/CardComment";
 
 function App() {
   const isLoggedin = useSelector((state) => state.data.isLoggedin);
+  const dispatch = useDispatch();
+  const dataStatus = useSelector((state) => state.data.dataStatus);
+
+  useEffect(() => {
+    dispatch(setStatus(JSON.parse(localStorage.getItem('statusUser'))));
+  }, []);
 
   return (
     <>
@@ -22,13 +30,15 @@ function App() {
             {isLoggedin ? <CardsProfiles /> : <CardsLogIn />}
           </div>
           <div className="lg:col-start-2 col-span-3 items-center">
-            {isLoggedin ? (
-              <>
-                <CardsPost /> <ReadPost />
-              </>
-            ) : (
-              <ReadPost />
-            )}
+          {isLoggedin ? <CardsPost /> : null}
+          {isLoggedin && dataStatus !== null ? dataStatus.map((data,index) => (
+            <CardsPostLogin 
+              key = {index}
+              keyID = {index}
+              fullname = {data.fullName}
+              status = {data.status}
+            />
+            )) : <CardComment /> }       
           </div>
           <div>
             <Ads />

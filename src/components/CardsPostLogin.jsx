@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { MdSend } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import CardComment from "./CardComment";
 
-function ReadPost() {
+function CardsPostLogin(props) {
   const isLoggedin = useSelector((state) => state.data.isLoggedin);
+  const Users = useSelector((state) => state.data.Users);
   const [comment, setComment] = useState("");
   const [disabled, setDisabled] = useState(true);
 
@@ -43,22 +44,19 @@ function ReadPost() {
   };
 
   return (
-    <div className="read-post-card text-pt-sans">
-      <div className="read-post-card-inside flex flex-col p-10 bg-bg-color3 dark:bg-bg-dark2 rounded-2xl">
+    <div className="read-post-card my-5">
+      <div className="read-post-card-inside flex flex-col p-3 bg-bg-color3 dark:bg-bg-dark2 rounded-2xl ">
         <div className="read-post-card-prof flex flex-row mb-6">
           <img
-            src="https://w7.pngwing.com/pngs/419/473/png-transparent-computer-icons-user-profile-login-user-heroes-sphere-black-thumbnail.png"
-            className="read-post-card-profpic object-cover h-20 w-20 rounded-full"
-            alt="profile picture"
-          ></img>
-          <div className="read-post-card-profname text-black dark:text-text-color2 object-right ml-5 text-2xl place-self-center">
-            Profile Name
-          </div>
+            src="https://cdn.iconscout.com/icon/free/png-64/pokemon-pokeball-pikachu-thunder-electric-shock-32217.png"
+            className="read-post-card-profpic object-cover h-10 w-10 rounded-full" alt=""/>
+          <h1 className="read-post-card-profname text-black dark:text-text-color2 object-right ml-5 font-pt-sans place-self-center">
+          {props.fullname}
+          </h1>
         </div>
-        <div className="read-post-card-content text-black dark:text-text-color2 mb-6 sm:text-sm md:text-md lg:text-3xl">
-          placeholder isi text placeholder isi textplaceholder isi
-          textplaceholder isi textplaceholder isi text
-        </div>
+        <p className="read-post-card-content text-black dark:text-text-color2 mb-6 text-normal font-pt-sans">
+        {props.status}
+        </p>
         <div className="read-post-card-comment-container flex flex-row justify-between">
           {/* <img src="" className='read-post-card-likeIcon' /> */}
           {isLoggedin && (
@@ -95,7 +93,6 @@ function ReadPost() {
                     <div className="read-post-card-sendIcon ml-5" alt="icon">
                       <IconContext.Provider
                         value={{
-                          //   color: "black",
                           className:
                             "h-6 w-6 flex items-end place-self-center fill-bg-dark dark:fill-bg-color3",
                         }}
@@ -117,4 +114,4 @@ function ReadPost() {
   );
 }
 
-export default ReadPost;
+export default CardsPostLogin;

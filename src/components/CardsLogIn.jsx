@@ -1,18 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
 
 import "styles/index.css";
+import { handleAuth } from "utils/redux/reducers/reducer";
 import CardsRegister from "./CardsRegister";
+import { useNavigate } from "react-router-dom";
 
 export default function CardsLogIn() {
-  const navigate = useNavigate();
+  const isLoggedIn = useSelector((state) => state.data.isLoggedIn);
+  const navigate = useNavigate;
+  const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    if (username && password) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [username, password]);
 
   const handleApi = (e) => {
+    setLoading(true);
     e.preventDefault();
-    console.log({ username, password });
     axios
       .post(
         `https://virtserver.swaggerhub.com/HERIBUDIYANA/Sosial-Media-API/1.0.0/login`,
@@ -23,15 +38,36 @@ export default function CardsLogIn() {
       )
       .then((result) => {
         console.log(result.data);
-        alert("Logged in");
-        navigate("/home");
-        localStorage.setItem("Token", result.data.token);
+        localStorage.setItem("token", result.data.token);
         localStorage.setItem("userLogin", JSON.stringify(result));
+        dispatch(handleAuth(true));
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "You're logged in",
+          showConfirmButton: true,
+        });
       })
       .catch((error) => {
+        if (error.response?.status === 400) {
+          Swal.fire({
+            icon: "error",
+            text: "cannot process data, invalid input from user",
+          });
+        } else if (error.response?.status === 500) {
+          Swal.fire({
+            icon: "error",
+            text: "cannot process data, something wrong on server",
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            text: "login failed",
+          });
+        }
         console.log(error);
-        alert("error");
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -58,22 +94,24 @@ export default function CardsLogIn() {
             placeholder="password"
             className="w-3/4 rounded-md bg-bg-color3 dark:bg-black border-none dark:border-bg-dark mt-2 mb-4 px-1 mx-1"
           />
-          </form>
-          <div className="card-actions">
-            <button
-              onClick={handleApi}
-              className="bg-bg-color2 dark:bg-bg-dark rounded-md w-3/4 my-5 text-sm text-white font-pt-sans"
-            >
-              Masuk
-            </button>
-            <br />
-            <hr className="border border-1 border-solid border-bg-color3 dark:border-bg-dark dark:bg-bg-dark bg-bg-color3" />
-            {/* <button className="bg-bg-color2 dark:bg-bg-dark rounded-md w-3/4 my-5 text-sm text-white font-pt-sans ">
-              Daftar
-            </button> */}
-            <CardsRegister/>
-          </div>
-        
+        </form>
+        <div className="card-actions justify-center items-center">
+          {/* <button
+            onClick={handleApi}
+            loading={loading || disabled}
+            className="bg-bg-color2 dark:bg-bg-dark rounded-md w-3/4 my-2 px-1 py-1 text-sm text-white font-pt-sans text-center hover:bg-bg-dark"
+          >
+            Masuk
+          </button> */}
+          <button
+            onClick={handleApi}
+            loading={loading || disabled}
+            className="bg-bg-color2 dark:bg-bg-dark rounded-md w-3/4 my-2 px-1 py-1 text-sm text-white font-pt-sans text-center hover:bg-bg-dark"
+          >
+            Masuk
+          </button>
+          <CardsRegister />
+        </div>
       </div>
     </div>
   );

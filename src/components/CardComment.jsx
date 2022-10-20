@@ -30,7 +30,7 @@ export default function CardComment() {
     <>
       {datas.map((data) => (
         <>
-          <div className="container flex w-3/4  bg-bg-color3 dark:bg-bg-dark2 my-2 p-2">
+          <div className="container flex w-12/12  bg-bg-color3 dark:bg-bg-dark2 my-2 p-2">
             <img
               src="https://w7.pngwing.com/pngs/419/473/png-transparent-computer-icons-user-profile-login-user-heroes-sphere-black-thumbnail.png"
               alt=""
@@ -44,7 +44,7 @@ export default function CardComment() {
               </p>
             </div>
           </div>
-          <div className="container flex w-3/4  bg-bg-color3 dark:bg-bg-dark2 my-2 p-2">
+          <div className="container flex w-12/12  bg-bg-color3 dark:bg-bg-dark2 my-2 p-2">
             <img
               src="https://w7.pngwing.com/pngs/419/473/png-transparent-computer-icons-user-profile-login-user-heroes-sphere-black-thumbnail.png"
               alt=""
@@ -58,7 +58,7 @@ export default function CardComment() {
               </p>
             </div>
           </div>
-          <div className="container flex w-3/4  bg-bg-color3 dark:bg-bg-dark2 my-2 p-2">
+          <div className="container flex w-12/12  bg-bg-color3 dark:bg-bg-dark2 my-2 p-2">
             <img
               src="https://w7.pngwing.com/pngs/419/473/png-transparent-computer-icons-user-profile-login-user-heroes-sphere-black-thumbnail.png"
               alt=""

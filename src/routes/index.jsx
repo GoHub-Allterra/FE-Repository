@@ -4,17 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 import { handleAuth } from "utils/redux/reducers/reducer";
-import { TokenContext } from "utils/redux/context";
 import Home from "pages";
 
 function App() {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.data.isLoggedIn);
-  const [token, setToken] = useState(null);
-  const jwtToken = useMemo(() => ({ token, setToken }), [token]);
+  const isLoggedin = useSelector((state) => state.data.isLoggedin);
 
   useEffect(() => {
-    const getToken = localStorage.getItem("Token");
+    const getToken = localStorage.getItem("token");
     if (getToken) {
       dispatch(handleAuth(true));
     } else {
@@ -23,16 +20,14 @@ function App() {
     axios.defaults.headers.common["Authorization"] = getToken
       ? `Bearer ${getToken}`
       : "";
-  }, [isLoggedIn]);
+  }, [isLoggedin]);
 
   return (
-    <TokenContext.Provider value={jwtToken}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={isLoggedIn ? <Home /> : <Home />} />
-        </Routes>
-      </BrowserRouter>
-    </TokenContext.Provider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import "styles/index.css";
 import { handleAuth } from "utils/redux/reducers/reducer";
 import CardsRegister from "./CardsRegister";
-import { useNavigate } from "react-router-dom";
 
 export default function CardsLogIn() {
-  const isLoggedIn = useSelector((state) => state.data.isLoggedIn);
-  const navigate = useNavigate;
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -29,16 +26,13 @@ export default function CardsLogIn() {
     setLoading(true);
     e.preventDefault();
     axios
-      .post(
-        `https://virtserver.swaggerhub.com/HERIBUDIYANA/Sosial-Media-API/1.0.0/login`,
-        {
-          username: username,
-          password: password,
-        }
-      )
+      .post(`http://52.77.235.98/login`, {
+        username: username,
+        password: password,
+      })
       .then((result) => {
         console.log(result.data);
-        localStorage.setItem("token", result.data.token);
+        localStorage.setItem("token", result.data.data.token);
         localStorage.setItem("userLogin", JSON.stringify(result));
         dispatch(handleAuth(true));
         Swal.fire({
@@ -105,7 +99,6 @@ export default function CardsLogIn() {
           </button> */}
           <button
             onClick={handleApi}
-            loading={loading || disabled}
             className="bg-bg-color2 dark:bg-bg-dark rounded-md w-3/4 my-2 px-1 py-1 text-sm text-white font-pt-sans text-center hover:bg-bg-dark"
           >
             Masuk

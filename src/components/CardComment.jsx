@@ -15,7 +15,6 @@ export default function CardComment() {
         `https://virtserver.swaggerhub.com/HERIBUDIYANA/Sosial-Media-API/1.0.0/posts/comments/25`
       )
       .then((res) => {
-        console.log(res.data);
         const { post } = res.data;
         const temp = [...datas];
         temp.push(...post);

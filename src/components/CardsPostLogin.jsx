@@ -49,18 +49,15 @@ function CardsPostLogin(props) {
         <div className="read-post-card-prof flex flex-row mb-6">
           <img
             src="https://cdn.iconscout.com/icon/free/png-64/pokemon-pokeball-pikachu-thunder-electric-shock-32217.png"
-            className="read-post-card-profpic object-cover h-10 w-10 rounded-full"
-            alt=""
-          />
+            className="read-post-card-profpic object-cover h-10 w-10 rounded-full" alt=""/>
           <h1 className="read-post-card-profname text-black dark:text-text-color2 object-right ml-5 font-pt-sans place-self-center">
-            {props.fullname}
+          {props.fullname}
           </h1>
         </div>
         <p className="read-post-card-content text-black dark:text-text-color2 mb-6 text-normal font-pt-sans">
-          {props.status}
+        {props.status}
         </p>
         <div className="read-post-card-comment-container flex flex-row justify-between">
-          {/* <img src="" className='read-post-card-likeIcon' /> */}
           {isLoggedin && (
             <>
               <div className="w-auto read-post-card-sendIcon place-self-center">

@@ -31,7 +31,6 @@ export default function CardsLogIn() {
         password: password,
       })
       .then((result) => {
-        console.log(result.data);
         localStorage.setItem("token", result.data.data.token);
         localStorage.setItem("userLogin", JSON.stringify(result));
         dispatch(handleAuth(true));
@@ -59,7 +58,6 @@ export default function CardsLogIn() {
             text: "login failed",
           });
         }
-        console.log(error);
       })
       .finally(() => setLoading(false));
   };

@@ -24,15 +24,7 @@ function App() {
             {isLoggedin ? <CardsProfiles /> : <CardsLogIn />}
           </div>
           <div className="lg:col-start-2 col-span-3 items-center">
-            {/* <CardsPost/> */}
-            <CardComment />
-            <CardComment />
-            <CardComment />
-            <CardComment />
-            <CardComment />
-            <CardComment />
-            <CardComment />
-            <CardComment />
+          {isLoggedin ? <CardsPost /> : <CardComment />}
           </div>
           <div>
             <Ads />

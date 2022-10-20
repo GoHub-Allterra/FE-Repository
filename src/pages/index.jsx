@@ -1,9 +1,6 @@
 import React from "react";
 import "styles/index.css";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
-import { handleAuth } from "utils/redux/reducers/reducer";
+import { useSelector } from "react-redux";
 import { WithRouter } from "utils/Navigations";
 
 import Ads from "components/Ads";
@@ -24,7 +21,7 @@ function App() {
             {isLoggedin ? <CardsProfiles /> : <CardsLogIn />}
           </div>
           <div className="lg:col-start-2 col-span-3 items-center">
-          {isLoggedin ? <CardsPost /> : <CardComment />}
+            {isLoggedin ? <CardsPost /> : <CardComment />}
           </div>
           <div>
             <Ads />

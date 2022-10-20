@@ -5,14 +5,16 @@ import Navbar from "./Navbar";
 // import { WithRouter } from "utils/Navigation";
 
 const Layout = ({ children }) => {
-	// const { isLight, setIsLight } = useContext(ThemeContext);
+  // const { isLight, setIsLight } = useContext(ThemeContext);
 
-	return (
-		<div>
-			<Navbar />
-			<div className="w-full h-max dark:bg-bg-dark2 bg-bg-color">{children}</div>
-		</div>
-	);
+  return (
+    <div>
+      <Navbar />
+      <div className="w-full h-screen dark:bg-bg-dark2 bg-bg-color">
+        {children}
+      </div>
+    </div>
+  );
 };
 
 export default Layout;

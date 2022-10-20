@@ -17,6 +17,9 @@ const sliceState = createSlice({
     setStatus: (state, action) => {
       state.dataStatus = action.payload;
     },
+    setComment: (state, action) => {
+      state.dataComment = action.payload;
+    },
   },
 });
 
@@ -24,5 +27,5 @@ const reducer = {
   state: sliceState.reducer,
 };
 
-export const { handleAuth,handleUser,setStatus } = sliceState.actions;
+export const { handleAuth, handleUser, setStatus } = sliceState.actions;
 export default reducer;

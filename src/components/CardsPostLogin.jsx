@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 import { MdSend } from "react-icons/md";
 import { AiFillHeart } from "react-icons/ai";
 import { IconContext } from "react-icons";
+import CardComment from "./CardComment";
 
 function ReadPost() {
+  const isLoggedin = useSelector((state) => state.data.isLoggedin);
   const [comment, setComment] = useState("");
   const [disabled, setDisabled] = useState(true);
 
@@ -58,52 +61,57 @@ function ReadPost() {
         </div>
         <div className="read-post-card-comment-container flex flex-row justify-between">
           {/* <img src="" className='read-post-card-likeIcon' /> */}
-
-          <div className="w-auto read-post-card-sendIcon place-self-center">
-            <div className="read-post-card-sendIcon mr-5" alt="icon">
-              <IconContext.Provider
-                value={{
-                  color: "red",
-                  className: "h-6 w-6 flex items-end place-self-center",
-                }}
-              >
-                <div>
-                  <AiFillHeart />
-                </div>
-              </IconContext.Provider>
-            </div>
-          </div>
-          <form
-            onSubmit={(e) => handleSubmit(e)}
-            className="grow grid grid-cols-2"
-          >
-            <input
-              onChange={(e) => setComment(e.target.value)}
-              className="read-post-card-comment rounded-xl h-10 p-3 flex w-full align-middle text-lg  text-text-color bg-white border-0 dark:bg-bg-dark focus:ring-0 dark:text-white
-              dark:placeholder-gray-400"
-              type="text"
-              name="name"
-              placeholder="Post a comment ..."
-            />
-            <button className="">
+          {isLoggedin && (
+            <>
               <div className="w-auto read-post-card-sendIcon place-self-center">
-                <div className="read-post-card-sendIcon ml-5" alt="icon">
+                <div className="read-post-card-sendIcon mr-5" alt="icon">
                   <IconContext.Provider
                     value={{
-                      //   color: "black",
-                      className:
-                        "h-6 w-6 flex items-end place-self-center fill-bg-dark dark:fill-bg-color3",
+                      color: "red",
+                      className: "h-6 w-6 flex items-end place-self-center",
                     }}
                   >
                     <div>
-                      <MdSend />
+                      <AiFillHeart />
                     </div>
                   </IconContext.Provider>
                 </div>
               </div>
-            </button>
-          </form>
+
+              <form
+                onSubmit={(e) => handleSubmit(e)}
+                className="grow grid grid-cols-2"
+              >
+                <input
+                  onChange={(e) => setComment(e.target.value)}
+                  className="read-post-card-comment rounded-xl h-10 p-3 flex w-full align-middle text-lg  text-text-color bg-white border-0 dark:bg-bg-dark focus:ring-0 dark:text-white
+              dark:placeholder-gray-400"
+                  type="text"
+                  name="name"
+                  placeholder="Post a comment ..."
+                />
+                <button className="">
+                  <div className="w-auto read-post-card-sendIcon place-self-center">
+                    <div className="read-post-card-sendIcon ml-5" alt="icon">
+                      <IconContext.Provider
+                        value={{
+                          //   color: "black",
+                          className:
+                            "h-6 w-6 flex items-end place-self-center fill-bg-dark dark:fill-bg-color3",
+                        }}
+                      >
+                        <div>
+                          <MdSend />
+                        </div>
+                      </IconContext.Provider>
+                    </div>
+                  </div>
+                </button>
+              </form>
+            </>
+          )}
         </div>
+        <CardComment />
       </div>
     </div>
   );

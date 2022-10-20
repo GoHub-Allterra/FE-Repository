@@ -9,6 +9,7 @@ import CardComment from "components/CardComment";
 import CardsLogIn from "components/CardsLogIn";
 import CardsProfiles from "components/CardsProfiles";
 import CardsPost from "components/CardsPost";
+import ReadPost from "components/CardsPostLogin";
 
 function App() {
   const isLoggedin = useSelector((state) => state.data.isLoggedin);
@@ -21,7 +22,13 @@ function App() {
             {isLoggedin ? <CardsProfiles /> : <CardsLogIn />}
           </div>
           <div className="lg:col-start-2 col-span-3 items-center">
-            {isLoggedin ? <CardsPost /> : <CardComment />}
+            {isLoggedin ? (
+              <>
+                <CardsPost /> <ReadPost />
+              </>
+            ) : (
+              <ReadPost />
+            )}
           </div>
           <div>
             <Ads />

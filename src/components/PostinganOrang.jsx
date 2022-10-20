@@ -31,7 +31,6 @@ function PostinganOrang(props) {
         `https://virtserver.swaggerhub.com/HERIBUDIYANA/Sosial-Media-API/1.0.0/posts`
       )
       .then((res) => {
-        console.log(res.data);
         const { post } = res.data;
         const temp = [...datas];
         temp.push(...post);

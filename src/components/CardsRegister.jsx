@@ -30,7 +30,6 @@ function CardsRegister() {
     };
     apiRequest("http://52.77.235.98/register", "POST", body)
       .then ((res) => {
-        console.log(res.message)
         const { message, data } = res.message;
         if (res.message) {
           alert('Daftar Berhasil')
